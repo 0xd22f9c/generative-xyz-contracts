@@ -1,6 +1,6 @@
 {
   "contractAddress": "0x9E545E3C0baAB3E08CdfD552C960A1050f373042",
-  "dataContractAddress": "0x0DCd1Bf9A1b36cE34237eEaFef220932846BCD82",
-  "cryptoAIAddress": "0x0DCd1Bf9A1b36cE34237eEaFef220932846BCD82",
-  "randomizerAddress": "0x9A676e781A523b5d0C0e43731313A708CB607508"
+  "dataContractAddress": "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+  "cryptoAIAddress": "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+  "randomizerAddress": "0x0165878A594ca255338adfa4d48449f69242Eb8F"
 }

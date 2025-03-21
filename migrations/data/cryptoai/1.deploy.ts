@@ -10,17 +10,16 @@ async function main() {
 
     try {
         // Get signer
-        // const [deployer] = await ethers.getSigners();
-        const deployerAddress = process.env.PUBLIC_KEY || "0x0000000000000000000000000000000000000000";
+        const [deployer] = await ethers.getSigners();
         console.log("\nDeployment Info:");
         console.log("Network:", process.env.NETWORK);
-        console.log("Deployer address:", deployerAddress);
+        console.log("Deployer address:", deployer.address);
 
         // Deploy CryptoAIData contract
-        const dataContract = new CryptoAIData(process.env.NETWORK, deployerAddress, deployerAddress);
+        const dataContract = new CryptoAIData(process.env.NETWORK, deployer.address, deployer.address);
 
         // Deploy with deployer address
-        const address = await dataContract.deployUpgradeable(deployerAddress);
+        const address = await dataContract.deployUpgradeable(deployer.address);
         console.log('\nDeployment Result:');
         console.log('CryptoAIData contract address:', address);
 
@@ -33,9 +32,9 @@ async function main() {
         const owner = await contract.owner();
         console.log('\nOwnership Verification:');
         console.log('Contract owner:', owner);
-        console.log('Deployer address:', deployerAddress);
+        console.log('Deployer address:', deployer.address);
 
-        if (owner.toLowerCase() !== deployerAddress.toLowerCase()) {
+        if (owner.toLowerCase() !== deployer.address.toLowerCase()) {
             console.warn('⚠️ Warning: Owner mismatch!');
         } else {
             console.log('✅ Owner verified successfully');
