@@ -60,44 +60,44 @@ async function main() {
         }
 
         // Initialize contract data
-        console.log("\nInitializing contract data...");
-        try {
-            // Add test DNA types
-            const dnaNames = ["Human", "Robot", "Animal"];
-            const dnaRarities = [100, 100, 100];
-            await cryptoAIDataContract.addDNA(dnaNames, dnaRarities);
-            console.log("✅ DNA types added");
+        // console.log("\nInitializing contract data...");
+        // try {
+        //     // Add test DNA types
+        //     const dnaNames = ["Human", "Robot", "Animal"];
+        //     const dnaRarities = [100, 100, 100];
+        //     await cryptoAIDataContract.addDNA(dnaNames, dnaRarities);
+        //     console.log("✅ DNA types added");
 
-            // Add test items
-            const key = "test_key";
-            const names = ["Test Item 1", "Test Item 2", "Test Item 3"];
-            const traits = [10, 20, 30];
-            const positions = [[1, 2], [3, 4], [5, 6]];
-            await cryptoAIDataContract.addItem(key, names, traits, positions);
-            console.log("✅ Test items added");
+        //     // Add test items
+        //     const key = "test_key";
+        //     const names = ["Test Item 1", "Test Item 2", "Test Item 3"];
+        //     const traits = [10, 20, 30];
+        //     const positions = [[1, 2], [3, 4], [5, 6]];
+        //     await cryptoAIDataContract.addItem(key, names, traits, positions);
+        //     console.log("✅ Test items added");
 
-            // Try to seal the contract
-            await cryptoAIDataContract.sealContract();
-            console.log("Contract sealed successfully");
-        } catch (error) {
-            console.log("Contract initialization failed:", error);
-        }
+        //     // Try to seal the contract
+        //     await cryptoAIDataContract.sealContract();
+        //     console.log("Contract sealed successfully");
+        // } catch (error) {
+        //     console.log("Contract initialization failed:", error);
+        // }
 
-        // Test CryptoAI address
-        const cryptoAIAddress = await randomizerContract.cryptoAIAddress();
-        console.log("CryptoAI address:", cryptoAIAddress);
+        // // Test CryptoAI address
+        // const cryptoAIAddress = await randomizerContract.cryptoAIAddress();
+        // console.log("CryptoAI address:", cryptoAIAddress);
 
-        if (cryptoAIAddress.toLowerCase() !== config.cryptoAIAddress.toLowerCase()) {
-            console.log("❌ CryptoAI address mismatch!");
-            console.log("Setting correct CryptoAI address...");
-            const tx = await randomizerContract.setCryptoAIAddress(config.cryptoAIAddress, {
-                gasLimit: 300000
-            });
-            await tx.wait();
-            console.log("✅ CryptoAI address updated successfully");
-        } else {
-            console.log("✅ CryptoAI address is correct");
-        }
+        // if (cryptoAIAddress.toLowerCase() !== config.cryptoAIAddress.toLowerCase()) {
+        //     console.log("❌ CryptoAI address mismatch!");
+        //     console.log("Setting correct CryptoAI address...");
+        //     const tx = await randomizerContract.setCryptoAIAddress(config.cryptoAIAddress, {
+        //         gasLimit: 300000
+        //     });
+        //     await tx.wait();
+        //     console.log("✅ CryptoAI address updated successfully");
+        // } else {
+        //     console.log("✅ CryptoAI address is correct");
+        // }
 
         // Test 2: Generate traits
         console.log("\nTest 2: Generate traits");
