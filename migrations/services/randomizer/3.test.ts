@@ -18,9 +18,10 @@ async function main() {
     try {
         // Get signer
         const [deployer] = await ethers.getSigners();
+        const deployerAddress = process.env.PUBLIC_KEY || "0x0000000000000000000000000000000000000000";
         console.log("\nTest Configuration:");
         console.log("Network:", process.env.NETWORK);
-        console.log("Tester address:", deployer.address);
+        console.log("Tester address:", deployerAddress);
         console.log("Randomizer address:", config.randomizerAddress);
         console.log("CryptoAI address:", config.cryptoAIAddress);
         console.log("CryptoAI NFT address:", config.contractAddress);
@@ -36,7 +37,7 @@ async function main() {
         // Check if deployer is owner of CryptoAIData
         const dataOwner = await cryptoAIDataContract.owner();
         console.log("CryptoAIData owner:", dataOwner);
-        console.log("Deployer address:", deployer.address);
+        console.log("Deployer address:", deployerAddress);
 
         // Always try to unseal the contract first
         console.log("Attempting to unseal contract...");
