@@ -9,4 +9,14 @@ interface ICryptoAIData {
 //    function unlockRenderAgent(uint256 tokenId) external;
 
     function unlockRenderAgent(uint256 tokenId, uint256 dna, uint256[5] memory traits) external;
+
+    function cryptoAIImageSvg(uint256 tokenId) external view returns (string memory);
+
+    function cryptoAIImage(uint256 tokenId) external view returns (bytes memory);
+
+    function cryptoAIImageHtml(uint256 tokenId) external view returns (string memory);
+
+    function cryptoAIAttributes(uint256 tokenId) external view returns (string memory);
+
+    function cryptoAIAttributesValue(uint256 tokenId) external view returns (string[] memory);
 }

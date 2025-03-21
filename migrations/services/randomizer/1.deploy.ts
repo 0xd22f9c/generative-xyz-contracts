@@ -1,12 +1,19 @@
-import { updateConfig } from '.';
-import { CryptoAIData } from "./cryptoAIData";
+import {CryptoAIRandomizer} from "./randomizer";
+import {initConfig, updateConfig} from "./config";
 const { ethers } = require("hardhat");
 
 async function main() {
-    // if (process.env.NETWORK != "local") {
-    //     console.log("wrong network");
-    //     return;
-    // }
+    if (process.env.NETWORK != "local") {
+        console.log("wrong network");
+        return;
+    }
+
+    // Initialize config
+    const config = await initConfig();
+    if (!config.cryptoAIAddress) {
+        console.error("CryptoAI address not found in config");
+        return;
+    }
 
     try {
         // Get signer
@@ -14,21 +21,21 @@ async function main() {
         console.log("\nDeployment Info:");
         console.log("Network:", process.env.NETWORK);
         console.log("Deployer address:", deployer.address);
+        console.log("CryptoAI Address:", config.cryptoAIAddress);
 
-        // Deploy CryptoAIData contract
-        const dataContract = new CryptoAIData(process.env.NETWORK, deployer.address, deployer.address);
+        // Deploy Randomizer contract
+        const randomizerContract = new CryptoAIRandomizer(process.env.NETWORK);
 
-        // Deploy with deployer address
-        const address = await dataContract.deployUpgradeable(deployer.address);
+        // Deploy with CryptoAI address from config
+        const address = await randomizerContract.deployUpgradeable(config.cryptoAIAddress);
         console.log('\nDeployment Result:');
-        console.log('CryptoAIData contract address:', address);
+        console.log('CryptoAIRandomizer address:', address);
 
         // Update config with new address
-        await updateConfig("dataContractAddress", address);
-        await updateConfig("cryptoAIAddress", address); // Update cryptoAIAddress to point to data contract
+        await updateConfig("randomizerAddress", address);
 
         // Verify the owner
-        const contract = await ethers.getContractAt("CryptoAIData", address);
+        const contract = await ethers.getContractAt("CryptoAIRandomizer", address);
         const owner = await contract.owner();
         console.log('\nOwnership Verification:');
         console.log('Contract owner:', owner);
